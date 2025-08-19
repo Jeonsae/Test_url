@@ -30,7 +30,7 @@ body{
 #next, #prev{
     position: absolute;
     top: 45%; /* 버튼 위치 조정 */
-    color: #fff;
+    color: rgba(255, 255, 255, 0);
     background-color: transparent;
     border: none;
     font-size: 90px; /* 버튼 크기 키움 */

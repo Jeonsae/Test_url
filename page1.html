@@ -1,145 +1,140 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>상세 뷰</title>
-  <style>
-    body {
-  margin: 0;
-  background: radial-gradient(circle, #ff7e5f, #feb47b);
-  color: white;
-  font-family: 'Noto Sans KR', sans-serif;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-  box-sizing: border-box;
-  overflow-y: hidden; /* 추가 */
-}
+ <meta charset="UTF-8" />
+ <title>상세 뷰</title>
+ <style>
+  body {
+   margin: 0;
+   background: radial-gradient(circle, #ff7e5f, #feb47b);
+   color: white;
+   font-family: 'Noto Sans KR', sans-serif;
+   height: 100vh;
+   display: flex;
+   flex-direction: column; /* 세로 정렬을 위해 추가 */
+   justify-content: center;
+   align-items: center;
+   padding: 40px;
+   box-sizing: border-box;
+   overflow-y: hidden;
+  }
 
-.container {
-  display: flex;
-  width: 900px;
-  height: 500px;
-  border-radius: 12px;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
+  .container {
+   display: flex;
+   width: 900px;
+   height: 500px;
+   border-radius: 12px;
+   overflow: hidden;
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   position: relative;
+  }
 
-.image-link {
-  flex: 1;
-  display: block;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
-}
+  .image-link {
+   flex: 1;
+   display: block;
+   background-position: center;
+   background-size: contain;
+   background-repeat: no-repeat;
+   border-top-left-radius: 12px;
+   border-bottom-left-radius: 12px;
+  }
 
-.info-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* 이 부분을 추가하여 내부 요소를 중앙에 정렬 */
-  padding: 30px;
-  box-sizing: border-box;
-  gap: 20px;
-}
+  .info-section {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   padding: 30px;
+   box-sizing: border-box;
+   gap: 20px;
+  }
 
-.description {
-  /* flex: 1; 삭제하여 콘텐츠에 맞는 높이만 차지하도록 함 */
-  text-align: center; /* 텍스트를 가운데 정렬 */
-  border-radius: 8px;
-  padding: 20px;
-  font-size: 16px;
-  line-height: 1.5;
-  background: rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
-}
+  .description {
+   text-align: center;
+   border-radius: 8px;
+   padding: 20px;
+   font-size: 16px;
+   line-height: 1.5;
+   background: rgba(0, 0, 0, 0.1);
+   overflow-y: auto;
+  }
 
-.stats {
-  /* flex: 1; 삭제하여 콘텐츠에 맞는 높이만 차지하도록 함 */
-  border-radius: 8px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 15px;
-  background: rgba(0, 0, 0, 0.1);
-}
+  .stats {
+   border-radius: 8px;
+   padding: 20px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   gap: 15px;
+   background: rgba(0, 0, 0, 0.1);
+  }
 
-.stat {
-  display: flex;
-  flex-direction: column;
-}
+  .stat {
+   display: flex;
+   flex-direction: column;
+  }
 
-.stat-name {
-  font-weight: 700;
-  margin-bottom: 6px;
-  font-size: 14px;
-}
+  .stat-name {
+   font-weight: 700;
+   margin-bottom: 6px;
+   font-size: 14px;
+  }
 
-.stat-bar {
-  width: 100%;
-  height: 16px;
-  background: #333;
-  border-radius: 8px;
-  overflow: hidden;
-}
+  .stat-bar {
+   width: 100%;
+   height: 16px;
+   background: #333;
+   border-radius: 8px;
+   overflow: hidden;
+  }
 
-.stat-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #ff6f61, #ffb347);
-  width: 0;
-  transition: width 0.6s ease;
-}
-  </style>
+  .stat-bar-fill {
+   height: 100%;
+   background: linear-gradient(90deg, #ff6f61, #ffb347);
+   width: 0;
+   transition: width 0.6s ease;
+  }
+
+  .click-text {
+   margin-top: 20px; /* 카운터와 텍스트 사이 간격 */
+   font-size: 1.5em;
+   font-weight: bold;
+   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+   padding-right: 475px;
+  }
+
+  @keyframes pulse {
+   0% { transform: scale(1); }
+   50% { transform: scale(1.05); }
+   100% { transform: scale(1); }
+  }
+ </style>
 </head>
 <body>
-  <div class="container">
-    <!-- 이미지 영역을 a 태그로 감싸기 -->
+ <div class="container">
     <a id="imageLink" class="image-link"></a>
 
-    <div class="info-section">
-      <div class="description">
-        서식지: 사하라 사막 중앙<br />
-        특성: 모래사위를 하고 무리지어 생활한다<br />
-        성격: 나쁜짓으로 하는 그런 그런것이 아니라 그런것이다
-      </div>
-      <!--
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-name">전투력</div>
-          <div class="stat-bar"><div class="stat-bar-fill" style="width: 60%;"></div></div>
-        </div>
-        <div class="stat">
-          <div class="stat-name">지능</div>
-          <div class="stat-bar"><div class="stat-bar-fill" style="width: 30%;"></div></div>
-        </div>
-        <div class="stat">
-          <div class="stat-name">식욕</div>
-          <div class="stat-bar"><div class="stat-bar-fill" style="width: 100%;"></div></div>
-        </div>
-        <div class="stat">
-          <div class="stat-name">용맹함</div>
-          <div class="stat-bar"><div class="stat-bar-fill" style="width: 100%;"></div></div>
-        </div>
-      </div>
-      -->
-    </div>
+  <div class="info-section">
+   <div class="description">
+    서식지: 사하라 사막 중앙<br />
+    특성: 모래사위를 하고 무리지어 생활한다<br />
+    성격: 나쁜짓으로 하는 그런 그런것이 아니라 그런것이다
+   </div>
   </div>
+ </div>
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const img = params.get("img");
+  <div class="click-text">카드를 클릭해보세요!</div>
 
-    if (img) {
-      const link = document.getElementById("imageLink");
-      link.style.backgroundImage = `url('${img}')`;
-      link.href = `card.html?img=${encodeURIComponent(img)}`;
-    }
-  </script>
+ <script>
+  const params = new URLSearchParams(window.location.search);
+  const img = params.get("img");
+
+  if (img) {
+   const link = document.getElementById("imageLink");
+   link.style.backgroundImage = `url('${img}')`;
+   link.href = `card.html?img=${encodeURIComponent(img)}`;
+  }
+ </script>
 </body>
 </html>

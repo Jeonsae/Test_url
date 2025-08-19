@@ -1,9 +1,5 @@
 body{
-    /* background-image: url('background.png'); */
-    /*background-color : #000049;*/
-
     background: radial-gradient(circle, #ff7e5f, #feb47b);
-
     min-height: 100vh;
     margin: 0;
     display: flex;
@@ -13,56 +9,58 @@ body{
     background-size : 1920px 1080px
 }
 
-
 .slider{
     position: relative;
     width: 100%;
-    height: 370px;
+    height: 740px; /* 기존 370px의 2배 */
     overflow: hidden;
 }
+
 .item{
     position: absolute;
-    width: 210px;
-    height: 320px;
+    width: 420px; /* 기존 210px의 2배 */
+    height: 640px; /* 기존 320px의 2배 */
     text-align: justify;
     border-radius: 10px;
     transition: 0.5s;
-    left: calc(50% - 110px);
+    left: calc(50% - 210px); /* (width / 2) 만큼 조정 */
     top: 0;
 }
+
 #next, #prev{
     position: absolute;
-    top: 40%;
+    top: 45%; /* 버튼 위치 조정 */
     color: #fff;
     background-color: transparent;
     border: none;
-    font-size: xxx-large;
+    font-size: 90px; /* 버튼 크기 키움 */
     font-family: monospace;
     font-weight: bold;
-    left: 400px;
+    left: 200px; /* 버튼 위치 조정 */
 }
+
 #next{
     left: unset;
-    right: 400px;
+    right: 200px; /* 버튼 위치 조정 */
 }
 
 
 .item {
-  position: absolute;
-  width: 200px;
-  height: 280px;
-  border-radius: 15px;
-  overflow: hidden;
-  transition: 0.5s;
-  left: calc(50% - 110px);
-  top: 0;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    width: 420px; /* 기존 200px에서 2배 이상 키움 */
+    height: 640px; /* 기존 280px에서 2배 이상 키움 */
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.5s;
+    left: calc(50% - 210px); /* (width / 2) 만큼 조정 */
+    top: 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
 }
 
 .item img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  border-radius: inherit;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: inherit;
 }

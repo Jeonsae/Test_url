@@ -54,7 +54,6 @@ body{
     transition: 0.5s;
     left: calc(50% - 210px); /* (width / 2) 만큼 조정 */
     top: 0;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
 }
 
 .item img {

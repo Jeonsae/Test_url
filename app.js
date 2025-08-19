@@ -43,16 +43,18 @@ function loadShow() {
 // 초기 로딩
 loadShow();
 
+// '다음' 버튼 클릭 로직 수정: 첫 번째 요소를 맨 뒤로 이동
 next.onclick = function() {
-    let lastItem = items[items.length - 1];
-    document.querySelector('.slider').prepend(lastItem);
+    let firstItem = items[0];
+    document.querySelector('.slider').appendChild(firstItem);
     items = document.querySelectorAll('.slider .item');
     loadShow();
 }
 
+// '이전' 버튼 클릭 로직 수정: 마지막 요소를 맨 앞으로 이동
 prev.onclick = function() {
-    let firstItem = items[0];
-    document.querySelector('.slider').appendChild(firstItem);
+    let lastItem = items[items.length - 1];
+    document.querySelector('.slider').prepend(lastItem);
     items = document.querySelectorAll('.slider .item');
     loadShow();
 }
@@ -84,11 +86,11 @@ function handleGesture() {
     if (Math.abs(diff) < 30) return;
 
     if (diff > 0) {
-        // 왼쪽으로 스와이프 (이전 슬라이드) -> 맨 앞의 요소를 맨 뒤로 이동
+        // 왼쪽으로 스와이프 (다음 슬라이드) -> 맨 앞의 요소를 맨 뒤로 이동
         let firstItem = items[0];
         document.querySelector('.slider').appendChild(firstItem);
     } else {
-        // 오른쪽으로 스와이프 (다음 슬라이드) -> 맨 뒤의 요소를 맨 앞으로 이동
+        // 오른쪽으로 스와이프 (이전 슬라이드) -> 맨 뒤의 요소를 맨 앞으로 이동
         let lastItem = items[items.length - 1];
         document.querySelector('.slider').prepend(lastItem);
     }

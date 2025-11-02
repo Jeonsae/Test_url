@@ -81,6 +81,14 @@ document.querySelector('.slider').addEventListener('touchend', (e) => {
     handleGesture();
 });
 
+// app.js 파일에 추가할 코드
+
+document.addEventListener('touchmove', function(event) {
+    // 이벤트의 기본 동작(스크롤)을 막습니다.
+    // 이는 모바일에서 '당겨서 새로고침' 기능을 비활성화하는 데 사용됩니다.
+    event.preventDefault();
+}, { passive: false });
+
 function handleGesture() {
     let diff = startX - endX;
     if (Math.abs(diff) < 30) return;
